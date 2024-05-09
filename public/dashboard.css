@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    /* background-color: purple; */
+    width: 80%;
+    height: 100vh;
+}
+
+.maindiv {
+    display: flex;
+    /* align-items: center; */
+    /* background-color: rgb(242, 79, 0); */
+    width: 100%;
+
+}
+
+.nav {
+    width: 20%;
+    background-color: whitesmoke;
+    padding-left: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.nav img {
+    height: 70px;
+}
+
+.material-symbols-outlined {
+    color: rgb(242, 79, 0);
+    top: -10px;
+    padding-left: 10px;
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.navfirst-div {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    width: 150px;
+    color: rgb(242, 79, 0);
+    /* background-color: rgba(148, 142, 142, 0.507); */
+    border-radius: 15px;
+    height: 40px;
+}
+
+/* .navsecondy-div{
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    color: rgb(242, 79, 0);
+    border-radius: 15px;
+}
+.navsecondy-div:hover{
+    background-color: rgba(148, 142, 142, 0.507);
+    height: 40px;
+    width: 200px;
+} */
+.navsecond-div {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    color: rgb(242, 79, 0);
+    border-radius: 15px;
+}
+
+/* .navsecond-div:hover {
+    background-color: rgba(148, 142, 142, 0.507);
+    height: 40px;
+    width: 200px;
+} */
+
+.navsec-div {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    color: rgb(242, 79, 0);
+    border-radius: 15px;
+}
+
+.mmaindiv {
+    display: flex;
+    /* align-items: center; */
+    color: white;
+
+}
+
+main {
+    color: white;
+    padding-left: 40px;
+    /* width: 80%; */
+}
+
+.account-balance {
+    width: 250px;
+    height: 100px;
+    /* background-color: blue; */
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.img {
+    height: 220px;
+    width: 300px;
+    margin-left: 50px;
+    margin-top: 15px;
+    border-radius: 20px;
+}
+
+.subdiv {
+    background-color: blue;
+    width: 900px;
+    margin-left: 60px;
+    text-decoration: none;
+    color: rgb(242, 79, 0);
+}
+
+.airtel {
+    width: 500px;
+    height: 50px;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px gray;
+    margin-left: 250px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-top: 10px; */
+    /* text-align: center; */
+    /* box-sizing: border-box; */
+    /* margin: auto; */
+    /* align-items: center; */
+}
+
+.airtel img {
+    height: 50px;
+}
+
+.airtel p {
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.airtime {
+    /* background-color: orange; */
+    display: none;
+    margin-top: 150px;
+    width: 80%;
+    height: 100vh;
+}
+
+.ms {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.ms-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    padding-left: 30px;
+    width: 50%;
+    height: 50%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#mori {
+    cursor: pointer;
+}
+
+select {
+    width: 500px;
+    height: 40px;
+    margin-left: 70px;
+    margin-top: 50px;
+    outline: 1px solid rgb(242, 79, 0);
+    border: none;
+}
+
+.buy {
+    width: 100px;
+    height: 30px;
+    background-color: rgb(242, 79, 0);
+    color: white;
+    margin-left: 450px;
+    border: none;
+    margin-top: 30px;
+}
+
+.number {
+    width: 500px;
+    height: 40px;
+    margin-left: 70px;
+    margin-top: 30px;
+    outline: 1px solid rgb(242, 79, 0);
+    border: none;
+}
+
+.Transactions {
+    background-color: rgb(242, 79, 0);
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.trans-div{
+    background-color: whitesmoke;
+    margin: auto;
+    margin-top: 30px;
+    width: 700px;
+    height: 500px;
+    padding-left: 110px; 
+    padding-top: 70px;  
+}
+.trans-input{
+    outline: 1px solid rgb(242, 79, 0);
+    border: none;
+    width: 500px;
+    height: 40px;
+}
+label{
+    color: rgb(242, 79, 0);
+}
+.send{
+    width: 150px;
+    height: 50px;
+    background-color: rgb(242, 79, 0);
+    color: white;
+    margin-left: 450px;
+    border: none;
+    margin-left: 350px;
+    padding-left: 30px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
+}
+.mypin{
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 25px;
+
+  }
+  .pin{
+    display: flex;
+    align-items: center;
+    /* margin-left: 35px; */
+
+  }
+  .payment{
+    padding: 50px;
+    align-items: center;
+  }
+      table,
+    th,
+    thead,
+    tr,
+    tbody,
+    td {
+        padding: 10px;
+        border-collapse: collapse;
+        color: black;
+        /* border: 2px solid black; */
+        margin-top: 20px;
+        margin-left: 20px;
+    }

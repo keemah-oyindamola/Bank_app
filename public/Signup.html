@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-storage-compat.js"></script>
+</head>
+<style>
+  .allinput {
+    width: 330px;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-left: 35px;
+  }
+
+  button {
+    width: 330px;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-left: 35px;
+    color: white;
+    background-color: rgb(242, 79, 0);
+    border: none;
+  }
+  .pin{
+    display: flex;
+    align-items: center;
+    /* margin-left: 35px; */
+
+  }
+  .create-pin{
+    margin-left: 35px;
+    margin-top: 20px;
+
+  }
+  .create-pin p{
+    margin-left: 15px;
+  }
+  .mypin{
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 25px;
+
+  }
+</style>
+
+<body>
+  <div style="display: flex; align-items: center; margin-top: 60px;  ">
+    <img src="image-removebg-preview.png" alt="">
+    <div style="width: 400px; height: 600px;background-color: white; margin-left: 150px;">
+      <h3 style="text-align: center; margin-top: 30px; font-weight: 800;">Signup</h3>
+      <input class="allinput" placeholder="Enter Your Username" type="text" name="" id="username">
+      <input class="allinput" placeholder="Enter Your Email" type="email" name="" id="email">
+      <input class="allinput" placeholder="Enter Your Phone Number" type="number" name="" id="number">
+      <input class="allinput" placeholder="Enter Your Password" type="password" name="" id="password">
+      <input class="allinput" placeholder="Confirm Your Password" type="password" name="" id="con_password">
+      <div class="create-pin">
+        <p>Create A Pin</p>
+        <div class="pin">
+          <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p1">
+          <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p2">
+          <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p3">
+          <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p4">
+          <!-- <input oninput="javascript:if(this.value.length > this.maxlength) this.value
+          = this.value.slice(0, maxlength);"
+           maxlength="1" oninput="pinn()" class="mypin" type="number" id="p4"> -->
+        </div>
+      </div>
+    
+
+      <button id="Signup" onclick="sign()">Signup</button>
+      <p style="text-align: center;">Already have an account? <a style="text-decoration: none;"
+          href="login.html">Login</a></p>
+    </div>
+
+  </div>
+</body>
+
+</html>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD3NepjPiw4J6oK6PuShK1Smbxdy0LsOcM",
+    authDomain: "level2-project-8e0a8.firebaseapp.com",
+    projectId: "level2-project-8e0a8",
+    storageBucket: "level2-project-8e0a8.appspot.com",
+    messagingSenderId: "627012890577",
+    appId: "1:627012890577:web:04178a719788ae64f77af0"
+  };
+
+  // Initialize Firebase
+ 
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  var storageRef = firebase.storage().ref();
+  // var provider = new firebase.auth.GoogleAuthProvider();
+
+</script>
+<script>
+  let p1 = document.getElementById('p1')
+  let p2 = document.getElementById('p2')
+  let p3 = document.getElementById('p3')
+  let p4 = document.getElementById('p4')
+
+  let username = document.getElementById('username')
+  let email = document.getElementById('email')
+  let number = document.getElementById('number')
+  let password = document.getElementById('password')
+  let con_password = document.getElementById('con_password')
+  let Signup= document.getElementById("Signup")
+  let account_number;
+  let account_balance;
+
+
+  function generateAcct_num(){
+    account_number= Math.floor(Math.random()*10000000000);
+    return account_number;
+  }
+  function pinn(){
+    if (p1.value.length == 1) {
+      p2.focus()
+    }
+    if (p2.value.length == 1) {
+      p3.focus()
+    }
+    if (p3.value.length == 1) {
+      p4.focus()
+    }
+    if (p4.value.length == 1) {
+      Signup.focus()
+    }
+  }
+
+
+  function sign() {
+    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+      .then((userCredential) => {
+        // Signed in 
+        var user = userCredential.user;
+        alert('Registration Successful')
+        window.location.href = 'login.html'
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+        // ..
+      });
+
+    // Add a new document in collection "cities"
+    db.collection("users").doc(email.value).set({
+      username: username.value,
+      email: email.value,
+      password: password.value,
+      number: number.value,
+      account_balance:5000,
+      accountNumber:generateAcct_num(),
+      mypin:`${p1.value}${p2.value}${p3.value}${p4.value}`
+    })
+      .then((docRef) => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+        console.log(error);
+      });
+  }
+
+</script>
