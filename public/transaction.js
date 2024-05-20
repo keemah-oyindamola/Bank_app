@@ -4,11 +4,12 @@ let amountacc_no = document.getElementById("amountacc_no")
 let amounttransf = document.getElementById("amounttransf")
 let narration = document.getElementById("narration")
 let usertransf = document.getElementById("usertransf")
-
-let p1 = document.getElementById('p1')
-let p2 = document.getElementById('p2')
-let p3 = document.getElementById('p3')
-let p4 = document.getElementById('p4')
+let amountgateway = document.getElementById("amountgateway")
+let amounttransfmodal = document.getElementById("amounttransfmodal")
+let p1 = document.getElementById('pn1')
+let p2 = document.getElementById('pn2')
+let p3 = document.getElementById('pn3')
+let p4 = document.getElementById('pn4')
 let buy = document.getElementById("buy")
 let modall = document.getElementById('mf-modal')
 
@@ -158,6 +159,7 @@ function transfer() {
                                                 p2.value = ""
                                                 p3.value = ""
                                                 p4.value = ""
+                                                modall.style.display = "none"
                                             })
                                             .catch((error) => {
                                                 console.log("Error updating recipient's account balance:", error);
@@ -284,7 +286,8 @@ function transfer1() {
 
     if (finduser) {
         modall.style.display = "block"
-        amounttransf.innerHTML = `₦` + amountacc_no.value
+        amounttransf.innerHTML = `₦` + amountacc_no.value + `.00`
+        amounttransfmodal.innerHTML = `₦` + amountacc_no.value + `.00`
         usertransf.innerHTML = useracc_no.value
     } else {
         alert('invalid user')
@@ -556,6 +559,7 @@ function saveTransaction() {
                 if (doc.exists) {
                     userName.innerHTML = doc.data().username;
                     acc_number.innerHTML = doc.data().accountNumber;
+
                     accountBalance.innerHTML = '₦' + doc.data().account_balance;
                     let getemail = doc.data().email;
 
@@ -566,7 +570,7 @@ function saveTransaction() {
                         receiveracc_no: finduser.accountnumber,
                         receivername: finduser.username,
                         receiveremail: finduser.email,
-                        senderemail:getemail,
+                        senderemail: getemail,
                         senderusername: userName.innerHTML,
                         amountTransferred: amount,
                     };
@@ -589,7 +593,7 @@ function saveTransaction() {
             });
         } else {
             console.log("No user found");
-            
+
         }
     });
 }
@@ -665,7 +669,7 @@ function saveTransaction() {
 //     tbody.innerHTML = '';
 
 //     // Fetch all transactions
-   
+
 //         transactionsRef.get().then((querySnapshot) => {
 //             querySnapshot.forEach((doc) => {
 //                 // Append each transaction to the table
@@ -684,10 +688,69 @@ function saveTransaction() {
 //         }).catch((error) => {
 //             console.error("Error getting transactions:", error);
 //         });
-  
+
 
 // }
 
 // // Call the function to fetch transactions when the page loads
 // getTransactions();
 
+function makePayment() {
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var uid = user.uid;
+            var docRef = db.collection("users").doc(user.email);
+
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    let newAmount = Number(doc.data().account_balance) + Number(amountgateway.value)
+
+                    FlutterwaveCheckout({
+                        public_key: "FLWPUBK_TEST-0ed2f690e66bea65f9c36701a33ae2ff-X",
+                        tx_ref: "Keemah-48981487343MDI0NzMx",
+                        amount: amountgateway.value,
+                        currency: "NGN",
+                        payment_options: "card, mobilemoneyghana, ussd",
+                        redirect_url: "./dashbd.html",
+                        meta: {
+                            consumer_id: 23,
+                            consumer_mac: "92a3-912ba-1192a",
+                        },
+                        customer: {
+                            email: doc.data().email,
+                            phone_number: "08102909304",
+                            name: doc.data().username,
+                        },
+                        customizations: {
+                            title: "The Keemah Bank",
+                            description: "Payment for an awesome cruise",
+                            logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+                        }
+                    });
+                    var washingtonRef = db.collection("users").doc(user.email);
+
+                    // Set the "capital" field of the city 'DC'
+                    return washingtonRef.update({
+                        account_balance: newAmount
+                    })
+                        .then(() => {
+                            accountBalance.innerHTML = '₦' + newAmount;
+                            console.log("Document successfully updated!");
+                        })
+                        .catch((error) => {
+                            // The document probably doesn't exist.
+                            console.error("Error updating document: ", error);
+                        });
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+        } else {
+            console.log("No user found");
+
+        }
+    });
+}

@@ -26,7 +26,7 @@
                 <span class="material-symbols-outlined">home</span>
                 <span style="margin-top: 4px; margin-left: 10px;">Home</span>
             </div>
-            <div class="navsecond-div">
+            <div class="navsecond-div" onclick="atm_page()">
                 <span class="material-symbols-outlined">credit_card</span>
                 <span style="margin-top: 4px; margin-left: 10px;">Get A Juara Card</span>
             </div>
@@ -38,7 +38,7 @@
                 <span class="material-symbols-outlined">phone_iphone</span>
                 <span style="margin-top: 4px; margin-left: 10px;">Purchase Airtime</span>
             </div>
-            <div class="navsecond-div">
+            <div class="navsecond-div" onclick="paymentgateway()">
                 <span class="material-symbols-outlined">account_balance_wallet</span>
                 <span style="margin-top: 4px; margin-left: 10px;">Fund-Wallet</span>
             </div>
@@ -67,46 +67,70 @@
                 <p style="margin-top: 20px; font-size: large;">Overview</p>
                 <div class="mmaindiv">
                     <div class="anyname">
-                        <div class="account-balance">
-                            <div style="display: flex; margin-top: 15px;">
-                                <p>Account Balance</p>
-                                <span id="show_eye" onclick="show_hide()" style="color: black;"
-                                    class="material-symbols-outlined">visibility</span>
-                                <span id="hide_eye" style="color: black; display: none;"
-                                    class="material-symbols-outlined">visibility_off</span>
+                        <div>
+                            <div class="account-balance">
+                                <div style="display: flex; margin-top: 15px;">
+                                    <p>Account Balance</p>
+                                    <span id="show_eye" onclick="show_hide()" style="color: black;"
+                                        class="material-symbols-outlined">visibility</span>
+                                    <span id="hide_eye" style="color: black; display: none;"
+                                        class="material-symbols-outlined">visibility_off</span>
+                                </div>
+                                <h2 style="color: black;" id="account_balance"></h2>
                             </div>
-                            <h2 style="color: black;" id="account_balance"></h2>
-                        </div>
-                        <div class="account-balance">
-                            <!-- <div style="display: flex; margin-top: 15px;"> -->
-                            <p>Account Number</p>
-                            <!-- <span style="color: black;" class="material-symbols-outlined">visibility</span>
+                            <div class="account-balance">
+                                <!-- <div style="display: flex; margin-top: 15px;"> -->
+                                <p>Account Number</p>
+                                <!-- <span style="color: black;" class="material-symbols-outlined">visibility</span>
                             </div> -->
-                            <h4 id="acc_number" style="margin-top: 30px;"></h4>
+                                <h4 id="acc_number" style="margin-top: 30px;"></h4>
+                            </div>
+                            <!-- <img src="graph.webp" alt=""> -->
+                        </div>
+                        <div>
+                            <img class="img"
+                                src="credit-card-money-currency-dollar-wallet-business-flow-chart-design-steps-glyph-icon-presentation-background-template-145351840.webp"
+                                alt="">
+                        </div>
+                        <div class="allprofile">
+                            <div class="profilediv">
+                                <img id="profileimg" class="profileimage" src="" alt="">
+                            </div>
+                            <button id="profilebtn">
+                                <label class="profilelabel" for="fileInput">Update Profile</label>
+                                <input onchange="profileimage(event)" id="fileInput" type="file">
+                            </button>
                         </div>
                     </div>
-                    <img class="img"
+                    <!-- <img class="img"
                         src="credit-card-money-currency-dollar-wallet-business-flow-chart-design-steps-glyph-icon-presentation-background-template-145351840.webp"
-                        alt="">
-                    <div class="subdiv">
+                        alt=""> -->
+                    <!-- <div>
+                            <img src="graph.webp" alt="">
+                        </div> -->
+                    <div class="secondflex">
                         <div>
-                            <input type="file">
-                            <button>Upload profile</button>
+                            <img class="secondfleximg" src="graph.webp" alt="">
                         </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <!-- <th >name</th>
+                        <!-- <div>  -->
+                        <div class="subdiv">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <!-- <th >name</th>
                                     <th>namer</th>
                                     <th>namest</th> -->
-                                    <!-- <th>namest</th> -->
-                            <tbody id="tbody">
-                                <!-- <td></td> -->
-                              
-                            </tbody>
-                            </tr>
-                            </thead>
-                        </table>
+                                        <!-- <th>namest</th> -->
+                                <tbody id="tbody">
+                                    <!-- <td></td> -->
+
+                                </tbody>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </main>
@@ -176,27 +200,206 @@
                     <button onclick="transfer1()" class="send">Send<span style="color: white;"
                             class="material-symbols-outlined">arrow_forward_ios</span></button>
                     <div id="mf-modal" class="ms">
-                        <div class="ms-content">
+                        <div class="mf-content">
                             <div class="mori">
                                 <span onclick="closeup()" id="mori" class="material-symbols-outlined">close</span>
                             </div>
                             <div class="Payment">
-                                <h1>Payment</h1>
-                                <p id="amounttransf"></p>
-                                <p id="usertransf"></p>
-                                <div class="pin">
-                                    <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p1">
-                                    <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p2">
-                                    <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p3">
-                                    <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="p4">
-                                    <!-- <input oninput="javascript:if(this.value.length > this.maxlength) this.value
+                                <div class="pay">
+                                    <h1>Payment</h1>
+                                </div>
+                                <div class="pay">
+                                    <p id="amounttransf"></p>
+                                </div>
+                                <div class="submodaldiv">
+                                    <div class="Amounts">
+                                        <h4>Amount</h4>
+                                        <p id="amounttransfmodal"></p>
+                                    </div>
+                                    <div class="Amount">
+                                        <h4>Account Number</h4>
+                                        <p id="acc_numbermodal"></p>
+                                    </div>
+                                    <div class="Amounts">
+                                        <h4>Name</h4>
+                                        <p id="usertransf"></p>
+                                    </div>
+                                </div>
+                                <!-- <h1>Payment</h1>
+                                <p id="amounttransf"></p> -->
+                                <!-- <p id="usertransf"></p> -->
+                                <div class="pay">
+                                    <h3 class="confirm">Confirm Transaction pin to continue</h3>
+                                </div>
+                                <div class="pindiv">
+                                    <div class="pin">
+                                        <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn1">
+                                        <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn2">
+                                        <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn3">
+                                        <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn4">
+                                        <!-- <input oninput="javascript:if(this.value.length > this.maxlength) this.value
                                     = this.value.slice(0, maxlength);"
                                      maxlength="1" oninput="pinn()" class="mypin" type="number" id="p4"> -->
+                                    </div>
+                                    <button onclick="transfer()" class="buy" id="buy">Transfer</button>
                                 </div>
-                                <button onclick="transfer()" class="buy" id="buy">Transfer</button>
+
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div id="atmpage">
+                <button onclick="showatm_modal()" id="atmpagebtn">Get A Juara Card</button>
+                <div id="smallii">
+                    <div id="smallb">
+                        <div id="box1">
+                            <div onclick="left()" id="arrows">
+                                <span class="material-symbols-outlined">
+                                    chevron_left
+                                </span>
+                            </div>
+                            <div id="atm">
+                                <div id="kpatm">
+                                    <img id="imgatm" src="image-removebg-preview.png" alt="">
+                                    <!-- <p id="pay1">Pay</p> -->
+                                </div>
+                                <div id="icn">
+                                    <img id="icp" src="net.jpg" alt="">
+                                    <!-- <img id="net" src="icp.jpg" alt=""> -->
+                                </div>
+                                <div id="icn1">
+                                    <p>1234</p>
+                                    <p>5678</p>
+                                    <p>8765</p>
+                                    <p>4321</p>
+                                </div>
+                                <div id="icn2">
+                                    <p id="expire">02/24</p>
+                                    <img id="master" src="mastercard.jpg" alt="">
+
+                                </div>
+                                <div id="icn3">
+                                    <p id="name">lexi Thompson</p>
+                                </div>
+                            </div>
+                            <div id="atm1">
+                                <div id="line">
+
+                                </div>
+                                <div id="line1">
+                                    <p>Authorised Signature</p>
+                                    <p>Not valid unless Signed</p>
+                                </div>
+                                <div id="line3">
+                                    <div id="line4"></div>
+
+                                </div>
+                                <p></p>
+                            </div>
+                            <div onclick="right()" id="arrows1">
+                                <span class="material-symbols-outlined">
+                                    chevron_right
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <!-- <div id="atm_modal" class="ms">
+                    <div class="ms-content">
+                        <div class="mori">
+                            <span onclick="closeupd()" class="material-symbols-outlined">close</span>
+                        </div>
+                        <div class="Payment">
+                            <h1>ATM CARD</h1>
+                            <p>Atm card Issuing</p>
+                            <p>ATM card is Issued ₦2000</p>
+                            <div class="pin">
+                                <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn1">
+                                <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn2">
+                                <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn3">
+                                <input maxlength="1" oninput="pinn()" class="mypin" type="number" id="pn4"> -->
+                                <!-- <input oninput="javascript:if(this.value.length > this.maxlength) this.value
+                                    = this.value.slice(0, maxlength);"
+                                    maxlength="1" oninput="pinn()" class="mypin" type="number" id="p4"> -->
+                            <!-- </div>
+                            <button onclick="buyingatm()" id="buy" class="buy">Buy Now</button>
+                        </div> -->
+                    </div>
+                    <div id="atm_modal" class="ms">
+                        <div class="mf-content">
+                            <div class="mori">
+                                <span onclick="closeupd()" id="mori" class="material-symbols-outlined">close</span>
+                            </div>
+                            <div class="Payment">
+                                <div class="pay">
+                                    <h1>Payment</h1>
+                                </div>
+                                <div class="pay">
+                                    <p>₦2000</p>
+                                </div>
+                                <div class="submodaldiv">
+                                    <div class="Amounts">
+                                        <h4>Amount</h4>
+                                        <p>₦2000</p>
+                                    </div>
+                                    <div class="Amount">
+                                        <h4>Account Number</h4>
+                                        <p id="acc_numberatmmodal"></p>
+                                    </div>
+                                    <div class="Amounts">
+                                        <h4>Name</h4>
+                                        <p id="nameatmmodal"></p>
+                                    </div>
+                                </div>
+                                <!-- <h1>Payment</h1>
+                                <p id="amounttransf"></p> -->
+                                <!-- <p id="usertransf"></p> -->
+                                <div class="pay">
+                                    <h3 class="confirm">Confirm Transaction pin to continue</h3>
+                                </div>
+                                <div class="pindiv">
+                                    <div class="pin">
+                                        <input maxlength="1" oninput="pinns()" class="mypin" type="number" id="p1">
+                                        <input maxlength="1" oninput="pinns()" class="mypin" type="number" id="p2">
+                                        <input maxlength="1" oninput="pinns()" class="mypin" type="number" id="p3">
+                                        <input maxlength="1" oninput="pinns()" class="mypin" type="number" id="p4">
+                                        <!-- <input oninput="javascript:if(this.value.length > this.maxlength) this.value
+                                    = this.value.slice(0, maxlength);"
+                                     maxlength="1" oninput="pinn()" class="mypin" type="number" id="p4"> -->
+                                    </div>
+                                    <button onclick="buyingatm()" id="buyatm" class="buy">Buy Now</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Transactions" id="Paymentgatewaypage">
+                <div class="trans-div">
+                    <label for="Enter Your Acct Number">Enter Your Acct Number</label><br>
+                    <input oninput="foundreceiver()" class="trans-input" type="text" name="">
+                    <br><br>
+
+                    <label for="User">User</label><br>
+                    <input class="trans-input" type="text" name="">
+                    <br><br>
+
+                    <label for="Amount">Amount</label><br>
+                    <input class="trans-input" type="text" name="" id="amountgateway">
+                    <br><br>
+
+                    <label for="Amount">Narration</label><br>
+                    <input class="trans-input" type="text" name="">
+                    <br><br>
+
+                    <button onclick="makePayment()" class="send">Send<span style="color: white;"
+                            class="material-symbols-outlined">arrow_forward_ios</span></button>
+
                 </div>
             </div>
         </div>
@@ -205,6 +408,8 @@
 </body>
 
 </html>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 <script src="dashboard.js"></script>
 <script src="airtime.js"></script>
 <script src="transaction.js"></script>
+<script src="Atm.js"></script>

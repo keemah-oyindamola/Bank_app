@@ -5,25 +5,54 @@ let airtimePage = document.getElementById("airtimePage")
 let Transactionspage = document.getElementById("Transactionspage")
 let mainpage = document.getElementById("mainPage")
 let userName = document.getElementById("userName")
-
+let fileInput = document.getElementById('fileInput')
+let profileimg = document.getElementById('profileimg')
+let names = document.getElementById('name')
+let nameatmmodal = document.getElementById("nameatmmodal")
+let atmpage = document.getElementById("atmpage")
+let Paymentgatewaypage = document.getElementById('Paymentgatewaypage')
+let acc_numbermodal = document.getElementById("acc_numbermodal")
+let acc_numberatmmodal = document.getElementById("acc_numberatmmodal")
 
 
 function airtime_Page() {
   airtimePage.style.display = 'block'
   Transactionspage.style.display = 'none'
   mainpage.style.display = 'none'
+  atmpage.style.display = "none"
+  Paymentgatewaypage.style.display = "none"
+
 }
 function transaction_page(){
   airtimePage.style.display = 'none'
   mainpage.style.display = 'none'
   Transactionspage.style.display = 'block'
+  atmpage.style.display = "none"
+  Paymentgatewaypage.style.display = "none"
+
 }
 function home_page() {
   airtimePage.style.display = 'none'
   Transactionspage.style.display = 'none'
   mainpage.style.display = 'block'
-}
+  atmpage.style.display = "none"
+  Paymentgatewaypage.style.display = "none"
 
+}
+function atm_page(){
+  atmpage.style.display = "block"
+  airtimePage.style.display = 'none'
+  Transactionspage.style.display = 'none'
+  mainpage.style.display = 'none' 
+  Paymentgatewaypage.style.display = "none" 
+}
+function paymentgateway(){
+  airtimePage.style.display = 'none'
+  Transactionspage.style.display = 'none'
+  mainpage.style.display = 'none'
+  atmpage.style.display = "none"
+  Paymentgatewaypage.style.display = "block"
+}
 
 const firebaseConfig = {
   apiKey: "AIzaSyD3NepjPiw4J6oK6PuShK1Smbxdy0LsOcM",
@@ -84,8 +113,11 @@ function isloggedin() {
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     userName.innerHTML = doc.data().username;
+                    names.innerHTML = doc.data().username;
                     acc_number.innerHTML = doc.data().accountNumber;
+                    acc_numberatmmodal.innerHTML = doc.data().accountNumber;
                     accountBalance.innerHTML = '₦' + doc.data().account_balance;
+                    profileimg.src = doc.data().profileimg;
                     let currentUserEmail = doc.data().email;
 
                     // Fetch and display transaction history for the current user
@@ -146,6 +178,7 @@ function getTransactions(currentUserEmail) {
     // Fetch transactions where the current user is the sender
     transactionsRef.where("senderemail", "==", currentUserEmail).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+          acc_numbermodal.innerHTML = doc.data().receiveracc_no;
             // Append each transaction to the table
             tbody.innerHTML += `
                 <tr>
@@ -218,6 +251,145 @@ function gettransaction(currentUserEmail) {
 // Call the isloggedin() function when the page loads
 isloggedin();
 
+// function profileimage(ev){
+//   let file = ev.target.files[0]
+//   // Create the file metadata
+// var metadata = {
+//   contentType: 'image/jpeg'
+// };
 
+// // Upload file and metadata to the object 'images/mountains.jpg'
+// var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+// // Listen for state changes, errors, and completion of the upload.
+// uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+//   (snapshot) => {
+//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+//     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//     console.log('Upload is ' + progress + '% done');
+//     switch (snapshot.state) {
+//       case firebase.storage.TaskState.PAUSED: // or 'paused'
+//         console.log('Upload is paused');
+//         break;
+//       case firebase.storage.TaskState.RUNNING: // or 'running'
+//         console.log('Upload is running');
+//         break;
+//     }
+//   }, 
+//   (error) => {
+//     // A full list of error codes is available at
+//     // https://firebase.google.com/docs/storage/web/handle-errors
+//     switch (error.code) {
+//       case 'storage/unauthorized':
+//         // User doesn't have permission to access the object
+//         break;
+//       case 'storage/canceled':
+//         // User canceled the upload
+//         break;
+
+//       // ...
+
+//       case 'storage/unknown':
+//         // Unknown error occurred, inspect error.serverResponse
+//         break;
+//     }
+//   }, 
+//   () => {
+//     // Upload completed successfully, now we can get the download URL
+//     uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+//       console.log('File available at', downloadURL);
+//       fileInput = downloadURL
+//     });
+//   }
+// );
+// }
+
+// function profileimage(ev){
+//   let file = ev.target.files[0]
+
+//   // Create the file metadata
+//   var metadata = {
+//     contentType: 'image/jpeg'
+//   };
+
+//   // Upload file and metadata to the object 'images/mountains.jpg'
+//   var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+//   // Listen for state changes, errors, and completion of the upload.
+//   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+//     (snapshot) => {
+//       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+//       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//       console.log('Upload is ' + progress + '% done');
+//       switch (snapshot.state) {
+//         case firebase.storage.TaskState.PAUSED: // or 'paused'
+//           console.log('Upload is paused');
+//           break;
+//         case firebase.storage.TaskState.RUNNING: // or 'running'
+//           console.log('Upload is running');
+//           break;
+//       }
+//     },
+//     (error) => {
+//       // A full list of error codes is available at
+//       // https://firebase.google.com/docs/storage/web/handle-errors
+//       switch (error.code) {
+//         case 'storage/unauthorized':
+//           // User doesn't have permission to access the object
+//           break;
+//         case 'storage/canceled':
+//           // User canceled the upload
+//           break;
+
+//         // ...
+
+//         case 'storage/unknown':
+//           // Unknown error occurred, inspect error.serverResponse
+//           break;
+//       }
+//     },
+//     () => {
+//       // Upload completed successfully, now we can get the download URL
+//       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+//         console.log('File available at', downloadURL);
+//         fileInput = downloadURL
+//       });
+//     }
+//   );
+// }
+function profileimage(ev) {
+  console.log(ev.target.files);
+  let file = ev.target.files[0];
+  let read = new FileReader();
+
+  read.addEventListener("load", (el) => {
+    let outcome = el.target.result;
+    console.log(outcome);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const email = user.email;
+        profileimg.src = outcome;
+        db.collection("users")
+          .doc(email)
+          .update({
+            profileimg: outcome,
+          })
+          .then(() => {
+            alert("Profile Picture updated successfully!!!");
+            console.log("Profile Picture updated successfully!");
+          })
+          .catch((error) => {
+            console.error("Error updating profile: ", error);
+          });
+      } else {
+      }
+    });
+  });
+
+  if (file) {
+    read.readAsDataURL(file);
+  }
+}
 
 

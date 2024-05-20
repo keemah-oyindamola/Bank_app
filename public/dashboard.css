@@ -92,10 +92,13 @@ body {
 }
 
 .mmaindiv {
-    display: flex;
+    /* display: flex; */
     /* align-items: center; */
     color: white;
 
+}
+.anyname{
+    display: flex;
 }
 
 main {
@@ -118,18 +121,41 @@ main {
 
 .img {
     height: 220px;
-    width: 300px;
+    width: 250px;
     margin-left: 50px;
     margin-top: 15px;
     border-radius: 20px;
 }
 
 .subdiv {
-    background-color: blue;
-    width: 900px;
-    margin-left: 60px;
+    /* background-color: rgb(242, 79, 0); */
+    /* width: 900px; */
+    height: 300px;
+    overflow-y: scroll;
+    margin-left: 30px;
     text-decoration: none;
     color: rgb(242, 79, 0);
+}
+
+.subdiv::-webkit-scrollbar {
+    display: none;
+}
+
+.allsubdiv {
+    background-color: red;
+    width: 500px;
+    height: 200px;
+    /* display: flex; */
+}
+.secondflex{
+    display: flex;
+    /* margin-top: 20px; */
+}
+.secondfleximg{
+    height: 290px;
+    margin-top: 20px;
+    width: 560px;
+
 }
 
 .airtel {
@@ -190,6 +216,16 @@ main {
     box-sizing: border-box;
     border-radius: 10px;
 }
+.mf-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    padding-left: 30px;
+    width: 30%;
+    height: 75%;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
 
 #mori {
     cursor: pointer;
@@ -209,7 +245,7 @@ select {
     height: 30px;
     background-color: rgb(242, 79, 0);
     color: white;
-    margin-left: 450px;
+    margin-left: 250px;
     border: none;
     margin-top: 30px;
 }
@@ -229,25 +265,29 @@ select {
     width: 100%;
     height: 100%;
 }
-.trans-div{
+
+.trans-div {
     background-color: whitesmoke;
     margin: auto;
     margin-top: 30px;
     width: 700px;
     height: 500px;
-    padding-left: 110px; 
-    padding-top: 70px;  
+    padding-left: 110px;
+    padding-top: 70px;
 }
-.trans-input{
+
+.trans-input {
     outline: 1px solid rgb(242, 79, 0);
     border: none;
     width: 500px;
     height: 40px;
 }
-label{
+
+label {
     color: rgb(242, 79, 0);
 }
-.send{
+
+.send {
     width: 150px;
     height: 50px;
     background-color: rgb(242, 79, 0);
@@ -263,33 +303,416 @@ label{
     font-size: 17px;
     cursor: pointer;
 }
-.mypin{
+
+.mypin {
     width: 50px;
     height: 40px;
     border-radius: 10px;
     margin-left: 25px;
 
-  }
-  .pin{
+}
+
+.pin {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    justify-content: center;
     /* margin-left: 35px; */
 
-  }
-  .payment{
+}
+
+.payment {
     padding: 50px;
+    /* align-items: center; */
+    justify-content: center;
+    display: flex;
+}
+.pay{
+    display: flex;
+    justify-content: center;   
+}
+.pay p {
+    color: rgb(242, 79, 0);
+    font-weight: 200;
+    font-size: 30px;
+}
+.submodaldiv{
+    /* background-color: red; */
+}
+.Amount{
+    display: flex;
     align-items: center;
-  }
-      table,
-    th,
-    thead,
-    tr,
-    tbody,
-    td {
-        padding: 10px;
-        border-collapse: collapse;
-        color: black;
-        /* border: 2px solid black; */
-        margin-top: 20px;
-        margin-left: 20px;
-    }
+    padding: 10px;
+    margin-left: 10px;
+}
+.Amount p {
+    margin-left: 135px;
+    /* color: yellow; */
+}
+.Amounts{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-left: 10px;
+}
+.Amounts p {
+    margin-left: 205px;
+    /* color: yellow; */
+}
+.confirm{
+    margin-top: 25px;
+}
+.pindiv{
+    margin-top: 20px;
+}
+
+table,
+th,
+thead,
+tr,
+tbody,
+td {
+    padding: 10px;
+    border-collapse: collapse;
+    color: black;
+    /* border: 2px solid black; */
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#fileInput {
+    display: none;
+}
+#profilebtn{
+    background-color: rgb(242, 79, 0);
+    margin-left: 340px;
+    border: none;
+    width: 100px;
+    height: 30px;
+}
+.profilelabel{
+    color: white;
+}
+
+.profilediv {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(242, 79, 0);
+    border-radius: 100%;
+    margin-left: 310px;
+    /* right: 0; */
+    /* position: absolute; */
+
+}
+
+.profileimage {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.allprofile {
+    /* background-color: black; */
+    height: 190px;
+    /* margin-left: 90px; */
+}
+
+/* #imgb{ */
+/* margin-top: px; */
+/* background-color:rgb(242, 79, 0);
+    color: rgb(246, 245, 252);
+    font-size: 16px;
+    font-weight: 300;
+    margin-left: 70px;
+    border: 0.5px solid rgb(246, 245, 252);
+    text-decoration: underline;
+    width: 220px;
+    height:40px; */
+/* } */
+#atmpage {
+    display: none;
+    background-color: white;
+}
+
+#atmpagebtn {
+    background-color: rgb(242, 79, 0);
+    color: white;
+    width: 200px;
+    height: 60px;
+    border: none;
+    right: 0;
+    position: absolute;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+#smallii {
+    width: 50%;
+    height: 106vh;
+    /* background-color: rgb(146, 34, 107); */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+
+
+
+}
+
+#smallb {
+    width: 90%;
+    height: 106vh;
+    /* background-color: rgb(195, 114, 167); */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 500px;
+}
+
+
+#box1 {
+    width: 100%;
+    height: 33%;
+    /* background-color: white; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+#add {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 55%;
+    height: 35px;
+    border: none;
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: rgb(173, 193, 255);
+    ;
+    outline: none;
+    color: rgb(7, 7, 57);
+
+}
+
+#total {
+    margin-top: 20px;
+    width: 70%;
+    height: 50px;
+    /* background-color: hotpink; */
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(247, 246, 249, 0.5);
+}
+
+#amount {
+    font-weight: 700;
+}
+
+#amm {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    /* background-color: brown; */
+    gap: 0.5rem;
+    margin-top: -15px;
+    font-weight: 700;
+    font-size: 18px;
+
+}
+
+#atm {
+    width: 100%;
+    height: 90%;
+    background-color: rgb(12, 2, 44);
+    border-radius: 10px;
+    position: absolute;
+    color: aliceblue;
+    left: 0;
+    transition: all 1s ease;
+
+}
+
+#atm1 {
+    width: 100%;
+    height: 90%;
+    background-color: black;
+    border-radius: 10px;
+    right: -300%;
+    position: absolute;
+    transition: all 1s ease;
+}
+
+#arrows {
+    top: 40%;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    /* background-color: blue; */
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gold;
+    cursor: pointer;
+}
+
+#arrows1 {
+    top: 40%;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    /* background-color: blue; */
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gold;
+    cursor: pointer;
+}
+
+#imgatm {
+    width: 70px;
+    height: 60px;
+}
+
+#pay1 {
+    margin-right: 10px;
+    margin-left: -5px;
+}
+
+#kpatm {
+    width: 100%;
+    height: 30px;
+    justify-content: end;
+    margin-top: 10px;
+    /* background-color: blue; */
+    display: flex;
+    /* align-items: center; */
+}
+
+#icn {
+    width: 100%;
+    height: 35px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#icn1 {
+    width: 100%;
+    height: 50px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#net {
+    width: 45px;
+    height: 45px;
+}
+
+#icp {
+    width: 45px;
+    height: 45px;
+}
+
+#icn2 {
+    width: 100%;
+    height: 20px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: end;
+}
+
+#icn2 p {
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+#master {
+    width: 40px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+#icn3 {
+    width: 100%;
+    height: 20px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#icn3 p {
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+#line {
+    margin-top: 20px;
+    width: 100%;
+    background-color: rgb(255, 232, 240);
+    height: 30px;
+}
+
+#line1 {
+    display: flex;
+    align-items: center;
+    padding: 0 10px 0 10px;
+    color: white;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+    /* background-color: rgb(152, 25, 69); */
+    height: 20px;
+}
+
+#line1 p {
+    /* margin-top: -10px; */
+    font-size: 10px;
+    font-weight: 400;
+}
+
+#line3 {
+    width: 90%;
+    background-color: white;
+    margin: 10px;
+    height: 20px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+}
+
+#line4 {
+    width: 85%;
+    /* margin-left: 10px; */
+    background-color: rgb(236, 228, 228);
+    height: 30px;
+}
+
+#icn3 p {
+    margin-top: -4px;
+}
