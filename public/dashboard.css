@@ -265,7 +265,6 @@ select {
     width: 100%;
     height: 100%;
 }
-
 .trans-div {
     background-color: whitesmoke;
     margin: auto;
@@ -715,4 +714,8 @@ td {
 
 #icn3 p {
     margin-top: -4px;
+}
+
+@media screen {
+    
 }

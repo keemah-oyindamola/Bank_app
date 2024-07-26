@@ -377,10 +377,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="Transactions" id="Paymentgatewaypage">
+                        <div class="trans-div">
+                            <label for="Enter Your Acct Number">Enter Your Acct Number</label><br>
+                            <input oninput="foundreceiver()" class="trans-input" type="text" name="">
+                            <br><br>
+        
+                            <label for="User">User</label><br>
+                            <input class="trans-input" type="text" name="">
+                            <br><br>
+        
+                            <label for="Amount">Amount</label><br>
+                            <input class="trans-input" type="text" name="" id="amountgateway">
+                            <br><br>
+        
+                            <label for="Amount">Narration</label><br>
+                            <input class="trans-input" type="text" name="">
+                            <br><br>
+        
+                            <button onclick="makePayment()" class="send">Send<span style="color: white;"
+                                    class="material-symbols-outlined">arrow_forward_ios</span></button>
+        
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="Transactions" id="Paymentgatewaypage">
-                <div class="trans-div">
+            <!-- <div class="Transactionsgateway" id="Paymentgatewaypage">
+                <div>
                     <label for="Enter Your Acct Number">Enter Your Acct Number</label><br>
                     <input oninput="foundreceiver()" class="trans-input" type="text" name="">
                     <br><br>
@@ -401,7 +424,7 @@
                             class="material-symbols-outlined">arrow_forward_ios</span></button>
 
                 </div>
-            </div>
+            </div> -->
         </div>
 
     </div>

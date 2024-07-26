@@ -9,54 +9,16 @@
   <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-storage-compat.js"></script>
+  <link rel="stylesheet" href="signup.css">
 </head>
-<style>
-  .allinput {
-    width: 330px;
-    height: 40px;
-    margin-top: 20px;
-    border-radius: 10px;
-    margin-left: 35px;
-  }
-
-  button {
-    width: 330px;
-    height: 40px;
-    margin-top: 20px;
-    border-radius: 10px;
-    margin-left: 35px;
-    color: white;
-    background-color: rgb(242, 79, 0);
-    border: none;
-  }
-  .pin{
-    display: flex;
-    align-items: center;
-    /* margin-left: 35px; */
-
-  }
-  .create-pin{
-    margin-left: 35px;
-    margin-top: 20px;
-
-  }
-  .create-pin p{
-    margin-left: 15px;
-  }
-  .mypin{
-    width: 50px;
-    height: 40px;
-    border-radius: 10px;
-    margin-left: 25px;
-
-  }
-</style>
 
 <body>
-  <div style="display: flex; align-items: center; margin-top: 60px;  ">
+  <div class="main-div">
+    <div class="img-div">
     <img src="image-removebg-preview.png" alt="">
-    <div style="width: 400px; height: 600px;background-color: white; margin-left: 150px;">
-      <h3 style="text-align: center; margin-top: 30px; font-weight: 800;">Signup</h3>
+    </div>
+    <div class="second-div">
+      <h3 class="h3-signup" style="text-align: center; margin-top: 30px; font-weight: 800;">Signup</h3>
       <input class="allinput" placeholder="Enter Your Username" type="text" name="" id="username">
       <input class="allinput" placeholder="Enter Your Email" type="email" name="" id="email">
       <input class="allinput" placeholder="Enter Your Phone Number" type="number" name="" id="number">
@@ -77,7 +39,7 @@
     
 
       <button id="Signup" onclick="sign()">Signup</button>
-      <p style="text-align: center;">Already have an account? <a style="text-decoration: none;"
+      <p class="h3-signup" style="text-align: center;">Already have an account? <a style="text-decoration: none;"
           href="login.html">Login</a></p>
     </div>
 

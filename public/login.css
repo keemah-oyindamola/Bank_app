@@ -1,0 +1,81 @@
+input {
+    width: 330px;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-left: 35px;
+}
+
+button {
+    width: 330px;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-left: 35px;
+    color: white;
+    background-color: rgb(242, 79, 0);
+    border: none;
+}
+.main-div {
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+}
+.second-div {
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    margin-left: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+    .main-div {
+        display: block;
+        justify-content: center;
+
+    }
+
+    .img-div img {
+        height: 150px;
+        margin-left: 200px;
+    }
+
+    input {
+        width: 250px;
+        height: 40px;
+
+    }
+
+    .h3-signup {
+        margin-right: 50px;
+    }
+
+    button {
+        width: 250px;
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1000px) {
+    .main-div {
+        display: flex;
+        justify-content: center;
+    }
+
+    .img-div img {
+        height: 200px;
+        margin-left: 200px;
+    }
+
+    input {
+        width: 200px;
+        height: 40px;
+    }
+
+    /* .h3-signup {
+        margin-right: 50px;
+    } */
+
+    button {
+        width: 200px;
+    }
+}
