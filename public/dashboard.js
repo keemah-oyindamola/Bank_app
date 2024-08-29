@@ -14,6 +14,31 @@ let Paymentgatewaypage = document.getElementById('Paymentgatewaypage')
 let acc_numbermodal = document.getElementById("acc_numbermodal")
 let acc_numberatmmodal = document.getElementById("acc_numberatmmodal")
 
+document.addEventListener("DOMContentLoaded", function() {
+  // Show the spinner
+  const spinner = document.getElementById('spinner');
+  spinner.style.display = 'flex';
+
+  // Simulate data fetching
+  fetchData().then(() => {
+      // Hide the spinner after data is loaded
+      spinner.style.display = 'none';
+  }).catch(error => {
+      console.error("Error loading data", error);
+      spinner.style.display = 'none';
+  });
+});
+
+function fetchData() {
+  // Simulate an API call or data fetching
+  return new Promise((resolve) => {
+      setTimeout(() => {
+          resolve();
+      }, 2000); // Simulated loading time
+  });
+}
+
+
 
 function airtime_Page() {
   airtimePage.style.display = 'block'

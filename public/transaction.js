@@ -106,6 +106,8 @@ foundreceiver()
 //   }
 
 function transfer() {
+    document.getElementById('loading').style.display = 'inline';
+    document.getElementById('message').innerHTML = ''; // Clear previous messages
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             var uid = user.uid;
@@ -121,8 +123,10 @@ function transfer() {
                         // console.log('yes');
 
                         if (`${p1.value}${p2.value}${p3.value}${p4.value}` == doc.data().mypin) {
-                            if (amountacc_no.value <= 0 || amountacc_no.value > accountBalance.innerHTML) {
+                            if (amountacc_no.value <= 0 || amountacc_no.value > Number(doc.data().account_balance)) {
                                 alert("Invalid Transfer Amount");
+                                document.getElementById('message').innerHTML = '<span style="color: red;">Invalid Transfer Amount</span>';
+
                             } else {
                                 currentAccountbalance = Number(doc.data().account_balance) - Number(amountacc_no.value);
                                 docRef.update({
@@ -150,7 +154,10 @@ function transfer() {
                                             .then(() => {
                                                 console.log("Recipient's account balance updated successfully!");
                                                 // Show success message to the user
-                                                alert(`Transfer of N${amountacc_no.value} to ${useracc_no.value} Successful`);
+                                                // alert(`Transfer of N${amountacc_no.value} to ${useracc_no.value} Successful`);
+                                                document.getElementById('message').innerHTML = `<span style="color: green;">Transfer of N${amountacc_no.value} to ${useracc_no.value} Successful</span>`;
+
+                                                saveTransaction()
                                                 inputacc_no.value = ""
                                                 useracc_no.value = ""
                                                 amountacc_no.value = ""
@@ -190,7 +197,7 @@ function transfer() {
             // ...
         }
     });
-    saveTransaction()
+    // saveTransaction()
 }
 
 
@@ -283,6 +290,7 @@ function transfer() {
 // }
 
 function transfer1() {
+    // document.getElementById('loading').style.display = 'inline';
 
     if (finduser) {
         modall.style.display = "block"

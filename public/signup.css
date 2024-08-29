@@ -1,38 +1,37 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box; /* Ensures consistent sizing across elements */
 }
 
-.allinput {
-    width: 330px;
+.allinput, button {
+    width: 100%; /* Utilize full width and adjust based on parent container */
+    max-width: 330px; /* Limit the maximum width */
     height: 40px;
     margin-top: 20px;
     border-radius: 10px;
-    margin-left: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* Center elements horizontally */
 }
 
 button {
-    width: 330px;
-    height: 40px;
-    margin-top: 20px;
-    border-radius: 10px;
-    margin-left: 35px;
     color: white;
     background-color: rgb(242, 79, 0);
     border: none;
+    cursor: pointer;
 }
 
 .pin {
     display: flex;
     align-items: center;
-    /* margin-left: 35px; */
-
+    justify-content: space-between; /* Ensure even spacing between pin inputs */
+    margin-left: 35px;
 }
 
 .create-pin {
     margin-left: 35px;
     margin-top: 20px;
-
 }
 
 .create-pin p {
@@ -43,52 +42,51 @@ button {
     width: 50px;
     height: 40px;
     border-radius: 10px;
-    margin-left: 25px;
-
 }
 
 .main-div {
     display: flex;
+    flex-direction: column; /* Stack items vertically for better control */
     align-items: center;
     margin-top: 60px;
+    padding: 20px;
 }
 
 .second-div {
     width: 400px;
+    max-width: 90%; /* Ensure it fits within smaller screens */
     height: 600px;
     background-color: white;
-    margin-left: 150px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added shadow for a modern look */
+}
+
+.img-div img {
+    max-width: 100%;
+    height: auto; /* Adjust height proportionally */
+    display: block;
+    margin: 0 auto; /* Center image */
 }
 
 @media only screen and (max-width: 600px) {
     .main-div {
-        display: block;
-        justify-content: center;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Align items at the center */
     }
 
     .img-div img {
-        height: 150px;
-        margin-left: 200px;
+        height: auto;
+        max-width: 80%; /* Adjust image size for smaller screens */
+        margin: 0 auto;
     }
 
-    .allinput {
+    .allinput, button {
         width: 250px;
-        height: 40px;
-
-    }
-
-    .h3-signup {
-        margin-right: 50px;
     }
 
     .mypin {
         width: 35px;
-        height: 40px;
-    }
-
-    button {
-        width: 250px;
     }
 }
 
@@ -100,23 +98,14 @@ button {
 
     .img-div img {
         height: 200px;
-        margin-left: 200px;
+        margin: 0 auto;
     }
 
-    .allinput {
+    .allinput, button {
         width: 200px;
-        height: 40px;
     }
 
-    /* .h3-signup {
-        margin-right: 50px;
-    } */
     .mypin {
         width: 30px;
-        height: 40px;
-    }
-
-    button {
-        width: 200px;
     }
 }

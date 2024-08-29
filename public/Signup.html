@@ -15,7 +15,7 @@
 <body>
   <div class="main-div">
     <div class="img-div">
-    <img src="image-removebg-preview.png" alt="">
+    <!-- <img src="image-removebg-preview.png" alt=""> -->
     </div>
     <div class="second-div">
       <h3 class="h3-signup" style="text-align: center; margin-top: 30px; font-weight: 800;">Signup</h3>
@@ -38,10 +38,13 @@
       </div>
     
 
-      <button id="Signup" onclick="sign()">Signup</button>
+      <button id="Signup" onclick="sign()">Signup
+        <div id="loading" style="display:none; margin-left: 10px;">Loading...</div>
+      </button>
       <p class="h3-signup" style="text-align: center;">Already have an account? <a style="text-decoration: none;"
           href="login.html">Login</a></p>
     </div>
+    <div id="message" style="text-align: center; margin-top: 20px;"></div>
 
   </div>
 </body>
@@ -101,38 +104,86 @@
   }
 
 
-  function sign() {
-    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
-      .then((userCredential) => {
-        // Signed in 
-        var user = userCredential.user;
-        alert('Registration Successful')
-        window.location.href = 'login.html'
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage);
-        // ..
-      });
+  // function sign() { 
+  //   firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+  //     .then((userCredential) => {
+  //       // Signed in 
+  //       var user = userCredential.user;
+  //       alert('Registration Successful')
+  //       window.location.href = 'login.html'
+  //     })
+  //     .catch((error) => {
+  //       var errorCode = error.code;
+  //       var errorMessage = error.message;
+  //       console.log(errorMessage);
+  //       // ..
+  //     });
 
-    // Add a new document in collection "cities"
-    db.collection("users").doc(email.value).set({
-      username: username.value,
-      email: email.value,
-      password: password.value,
-      number: number.value,
-      account_balance:5000,
-      accountNumber:generateAcct_num(),
-      mypin:`${p1.value}${p2.value}${p3.value}${p4.value}`
-    })
-      .then((docRef) => {
-        console.log("Document successfully written!");
-      })
-      .catch((error) => {
-        console.error("Error writing document: ", error);
-        console.log(error);
-      });
+  //   // Add a new document in collection "cities"
+  //   db.collection("users").doc(email.value).set({
+  //     username: username.value,
+  //     email: email.value,
+  //     password: password.value,
+  //     number: number.value,
+  //     account_balance:5000,
+  //     accountNumber:generateAcct_num(),
+  //     mypin:`${p1.value}${p2.value}${p3.value}${p4.value}`
+  //   })
+  //     .then((docRef) => {
+  //       console.log("Document successfully written!");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error writing document: ", error);
+  //       console.log(error);
+  //     });
+  // }
+
+  function sign() {
+    if (!username.value || !email.value || !number.value || !password.value || !con_password.value) {
+    document.getElementById('message').innerHTML = '<span style="color: red;">All fields are required!</span>';
+    return;
   }
+  if (password.value !== con_password.value) {
+    document.getElementById('message').innerHTML = '<span style="color: red;">Passwords do not match!</span>';
+    return;
+  }
+  // Show the loading indicator
+  document.getElementById('loading').style.display = 'inline';
+  document.getElementById('message').innerHTML = ''; // Clear previous messages
+
+  firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+    .then((userCredential) => {
+      // Signed in 
+      var user = userCredential.user;
+      
+      // Add user data to Firestore
+      return db.collection("users").doc(email.value).set({
+        username: username.value,
+        email: email.value,
+        password: password.value,
+        number: number.value,
+        account_balance: 5000,
+        accountNumber: generateAcct_num(),
+        mypin: `${p1.value}${p2.value}${p3.value}${p4.value}`
+      });
+    })
+    .then(() => {
+      document.getElementById('message').innerHTML = '<span style="color: green;">Registration Successful!</span>';
+      // Redirect after a short delay
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 2000); // 2-second delay
+    })
+    .catch((error) => {
+      var errorMessage = error.message;
+      document.getElementById('message').innerHTML = `<span style="color: red;">Error: ${errorMessage}</span>`;
+      console.log(errorMessage);
+    })
+    .finally(() => {
+      // Hide the loading indicator
+      document.getElementById('loading').style.display = 'none';
+    });
+}
+
 
 </script>

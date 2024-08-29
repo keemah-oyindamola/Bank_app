@@ -1,7 +1,7 @@
 let modal = document.getElementById('ms-modal')
 let selectairtime = document.getElementById("selectairtime")
 let phonenumber = document.getElementById('phonenumber')
-let ar = Math.floor(Math.random()*10)
+let ar = Math.floor(Math.random() * 10)
 
 function purchase_airtime() {
     modal.style.display = "block"
@@ -16,114 +16,100 @@ window.onclick = function (event) {
 }
 
 function buyairtime() {
-    const user = firebase.auth().currentUser
+    document.getElementById('loading').style.display = 'inline';
+    document.getElementById('message').innerHTML = ''; // Clear previous messages
+
+    const user = firebase.auth().currentUser;
+
+    if (!user) {
+        document.getElementById('message').innerHTML = '<span style="color: red;">User not authenticated.</span>';
+        document.getElementById('loading').style.display = 'none';
+        return;
+    }
+
+    const airtimeAmount = Number(selectairtime.value);
+    const phone = phonenumber.value.trim();
+
+    // Input Validation
+    if (!phone || airtimeAmount === 0) {
+        document.getElementById('message').innerHTML = '<span style="color: red;">Phone number or airtime amount cannot be empty</span>';
+        // alert('Phone number or airtime amount cannot be empty');
+        document.getElementById('loading').style.display = 'none';
+        return;
+    }
+
     var docRef = db.collection("users").doc(user.email);
 
     docRef.get().then((doc) => {
         if (doc.exists) {
-            if (phonenumber.value == '' || selectairtime.value == '') {
-                alert('cant be empty')
-            } else {
-                currentAccountbalance = Number(doc.data().account_balance) - Number(selectairtime.value)
-                console.log(currentAccountbalance);
-                alert(`Recharge of ${selectairtime.value} Airtime successful`)
-                selectairtime.value = ""
-                phonenumber.value = ""
-                //    accountBalance.innerHTML = currentAccountbalance
-                var userRef = db.collection("users").doc(user.email);
-                // Set the "capital" field of the city 'DC'
-                return userRef.update({
-                    account_balance: currentAccountbalance
-                })
-                    .then(() => {
-                        db.collection("users").doc(user.email)
-                            .onSnapshot((doc) => {
-                                accountBalance.innerHTML = '₦' + doc.data().account_balance
-                            });
-                        console.log("Document successfully updated!");
-    
-
-                    })
-                    .catch((error) => {
-                        // The document probably doesn't exist.
-                        console.error("Error updating document: ", error);
-                    });
+            const currentAccountBalance = Number(doc.data().account_balance);
+            
+            if (currentAccountBalance < airtimeAmount) {
+                document.getElementById('message').innerHTML = '<span style="color: red;">Insufficient balance.</span>';
+                return;
             }
-            // console.log("Document data:", doc.data());
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-   savingTransaction()
-    // console.log(selectairtime.value);
-    // console.log(accountBalance);
-    // currentAccountbalance = Number(accountBalance) - Number(selectairtime.value)
-    // console.log(currentAccountbalance);
 
-}
-function savingTransaction() {
-    let select = Number(selectairtime.value)
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            var uid = user.uid;
-            var docRef = db.collection("users").doc(user.email);
+            const newAccountBalance = currentAccountBalance - airtimeAmount;
 
-            docRef.get().then((doc) => {
-                if (doc.exists) {
-                    userName.innerHTML = doc.data().username;
-                    acc_number.innerHTML = doc.data().accountNumber;
-                    accountBalance.innerHTML = '₦' + doc.data().account_balance;
-                    let getemail = doc.data().email;
+            docRef.update({
+                account_balance: newAccountBalance
+            })
+            .then(() => {
+                accountBalance.innerHTML = '₦' + newAccountBalance;
+                document.getElementById('message').innerHTML = '<span style="color: green;">Airtime purchase successful!</span>';
+                
+                // Clear inputs
+                selectairtime.value = "";
+                phonenumber.value = "";
 
-                    // Now, inside this block, you have access to getemail
-                    const airtimetransactionData = {
-                        date: new Date(),
-                        airtimeamount: select,
-                        airtimesenderemail:getemail,
-                        airtimesenderusername: userName.innerHTML,
-                        
-                    };
-
-                    // Save the transaction document with the transactionData
-                    db.collection("airtimetransactions").doc().set(airtimetransactionData)
-                        .then(() => {
-                            console.log("airtimeTransaction document successfully written");
-                            // Optionally, call getTransactions() to update the transaction history
-                            // getTransactions();
-                        })
-                        .catch((error) => {
-                            console.error("Error writing transaction document: ", error);
-                        });
-                } else {
-                    console.log("No such document!");
-                }
-            }).catch((error) => {
-                console.log("Error getting document:", error);
+                // Save transaction
+                return savingTransaction(airtimeAmount, user.email, userName.innerHTML);
+            })
+            .catch((error) => {
+                document.getElementById('message').innerHTML = `<span style="color: red;">Error updating balance: ${error.message}</span>`;
             });
         } else {
-            console.log("No user found");
-            
+            document.getElementById('message').innerHTML = '<span style="color: red;">User document not found.</span>';
         }
+    })
+    .catch((error) => {
+        document.getElementById('message').innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
+    })
+    .finally(() => {
+        document.getElementById('loading').style.display = 'none';
     });
 }
-    
-    // // Add a new document in collection "cities"
-    // db.collection("airtimetransactions").doc(userName.innerHTML).set({
-    //     date: new Date(),
-    //     airtimeamount: selectairtime.value,
-    //     // senderName: sender.data().username,
-    //     // senderBalance:currentAccountbalance,
-    // })
-    //     .then(() => {
-    //         console.log("Document successfully written!");
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error writing document: ", error);
-    //         console.log(error);
-    //     });
+function savingTransaction(airtimeAmount, email, username) {
+    const airtimetransactionData = {
+        date: new Date(),
+        airtimeamount: airtimeAmount,
+        airtimesenderemail: email,
+        airtimesenderusername: username,
+    };
+
+    return db.collection("airtimetransactions").doc().set(airtimetransactionData)
+        .then(() => {
+            console.log("Airtime transaction document successfully written");
+        })
+        .catch((error) => {
+            console.error("Error writing transaction document: ", error);
+        });
+}
+
+// // Add a new document in collection "cities"
+// db.collection("airtimetransactions").doc(userName.innerHTML).set({
+//     date: new Date(),
+//     airtimeamount: selectairtime.value,
+//     // senderName: sender.data().username,
+//     // senderBalance:currentAccountbalance,
+// })
+//     .then(() => {
+//         console.log("Document successfully written!");
+//     })
+//     .catch((error) => {
+//         console.error("Error writing document: ", error);
+//         console.log(error);
+//     });
 
 
 

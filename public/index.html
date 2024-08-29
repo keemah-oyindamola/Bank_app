@@ -4,85 +4,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Keemah Landing Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .img {
-            height: 80px;
+        .navbar {
+            background-color: rgb(242, 79, 0);
         }
 
-        #home {
-            margin-left: 400px;
+        .navbar .nav-link {
+            color: white !important;
+            margin-right: 15px;
         }
 
-        #Features {
-            margin-left: 70px;
+        .navbar .nav-link:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 40px 20px;
+            background-color: #f7f7f7;
+        }
+
+        .hero-section h1 {
+            color: rgb(242, 79, 0);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            max-width: 500px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-section img {
+            height: 300px;
+            margin-left: auto;
+            max-width: 100%;
+            display: block;
+        }
+
+        .btn-custom {
+            background-color: rgb(242, 79, 0);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #e96f00;
+        }
+
+        .features-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .features-section h2 {
+            color: rgb(242, 79, 0);
+            margin-bottom: 30px;
+        }
+
+        .features-section .feature {
+            margin-bottom: 40px;
+        }
+
+        .features-section .feature img {
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .rewards-section {
+            background-color: rgb(242, 79, 0);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .rewards-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .rewards-section p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rewards-section img {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
         }
     </style>
+</head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-            <img class="img" src="image-removebg-preview.png" alt="">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">
+                <img src="image-removebg-preview.png" alt="Logo" style="height: 60px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="Features" href="#">Features</a>
+                        <a class="nav-link" href="#">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Signup.html" id="Features">Signup</a>
+                        <a class="nav-link" href="Signup.html">Signup</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" id="Features">
-                            Dropdown link
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Login.html">Login</a>
                     </li>
                 </ul>
-                <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
             </div>
         </div>
     </nav>
-    <div style="display: flex; margin-top: 80px;margin-left: 20px; ">
-        <h4 style="color: rgb(242,79,0); font-family: cursive;">Finance That Fits Your Life <br><br> Seamlessly send and receive
-            money,<br> Effortlessly pay your bills, <br>Shop anywhere with ease,<br> And take full control of your
-            finances - <br><br> All in kemah Juara</h4>
-        <img style=" height: 280px; margin-left: 170px;" src="payBills.0efc6845.png" alt="">
+
+    <!-- Hero Section -->
+    <div class="hero-section container">
+        <div>
+            <h1>Finance That Fits Your Life</h1>
+            <p>Seamlessly send and receive money, effortlessly pay your bills, shop anywhere with ease, and take full
+                control of your finances - all in Keemah Juara.</p>
+            <a href="Signup.html" class="btn btn-custom">Get Started</a>
+        </div>
+        <img src="payBills.0efc6845.png" alt="Finance Image">
     </div>
 
-    <div style="margin-top: 40px;">
-        <img style="height: 680px; margin-left: 20px;  color: orange;" src="makeFinancial.16856f8a.png" alt="">
+    <!-- Features Section -->
+    <div class="features-section">
+        <h2>Our Features</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 feature">
+                    <img src="https://mcprod.jumbo.ae/media/dynamicdashboard/images/items/_/1/_1666340661069_69_easy-pay_main-banner_mobile_en.jpg" alt="Feature 1">
+                    <h4>Easy Payments</h4>
+                    <p>Effortlessly manage your payments with just a few clicks.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <img src="https://as2.ftcdn.net/v2/jpg/00/93/93/97/1000_F_93939737_Ski4596KI0lDCyJ4fkpSb2KcLJSMwYME.jpg" alt="Feature 2">
+                    <h4>Secure Transactions</h4>
+                    <p>Our top-notch security ensures your money is safe.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <img src="data:image/jpeg;base64,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" alt="Feature 3">
+                    <h4>Rewards & Cashback</h4>
+                    <p>Earn rewards every time you spend with Keemah.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div style="margin-top: 60px; background-color: black; text-align: center;">
-        <h1 style="color: orange;">Earn as you spend with rewards</h1>
-        <p style="color: white; margin-top: 30px; ">With Keemah, every expense becomes an opportunity to save. Unlock exclusive discounts and cashback rewards with transaction you make. Embrace cashless payment and make every payment count with Keemah</p>
-        <img style="width: 500px; margin-top: 30px; text-align: center;" src="coupons.b7c11783.png" alt="">
+    <!-- Rewards Section -->
+    <div class="rewards-section">
+        <h2>Earn as You Spend</h2>
+        <p>With Keemah, every expense becomes an opportunity to save. Unlock exclusive discounts and cashback rewards
+            with every transaction you make. Embrace cashless payments and make every payment count with Keemah.</p>
+        <img src="coupons.b7c11783.png" alt="Rewards Image">
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Keemah. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMzpHRhBOUZhtNijgUdoMio2Iy9zuZXxbObAwutF6kPe0G1niWXA/weu7Ek" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-gkaScQ7PA6v5NITuGnAsrAQIIOtLYT+4CbK63LVLgTQz3OFtKNf5N8FfA2Lm0cC2" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
