@@ -162,69 +162,72 @@ function isloggedin() {
 }
 
 function getTransactions(currentUserEmail) {
-    const transactionsRef = db.collection("transactions");
+  const transactionsRef = db.collection("transactions");
 
-    // Clear existing table content
-    tbody.innerHTML = '';
-    // transactionsRef.where("senderemail", "==", currentUserEmail)
-    //                .get()
-    //                .then((querySnapshot) => {
-    //                    querySnapshot.forEach((doc) => {
-    //                        const senderName = doc.data().senderusername;
-    //                        const receiverName = doc.data().receivername;
-    //                        const amount = doc.data().amountTransferred;
-    //                        const transactionDate = doc.data().date.toDate().toLocaleDateString(); // Convert date to string
-    //                        const isSender = doc.data().senderemail === currentUserEmail;
+  // Clear existing table content
+  tbody.innerHTML = '';
 
-    //                        // Determine counterparty's name and transaction type (sent or received)
-    //                        const counterPartyName = isSender ? receiverName : senderName;
-    //                        const transactionType = isSender ? "Sent" : "Received";
+  // Fetch transactions where the current user is the sender
+  transactionsRef
+      .where("senderemail", "==", currentUserEmail)
+      .orderBy("date", "desc")
+      .get()
+      .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+              const transaction = doc.data();
+              const transactionDate = transaction.date.toDate().toLocaleDateString();
+              
+              // Append each transaction to the table
+              tbody.innerHTML += `
+                  <tr>
+                      <td><img style="width: 50px;" src="transfer.webp" alt=""></td>
+                      <td>${transaction.senderusername}</td>
+                      <td>to</td>
+                      <td>${transaction.receivername}</td>
+                      <td>${-transaction.amountTransferred}</td>
+                      <td>${transactionDate}</td>
+                  </tr>
+              `;
+          });
 
-    //                        // Append transaction to the table
-    //                        tbody.innerHTML += `
-    //                            <tr>
-    //                                <td>${transactionDate}</td>
-    //                                <td>${transactionType}</td>
-    //                                <td>${counterPartyName}</td>
-    //                                <td>${amount}</td>
-    //                            </tr>
-    //                        `;
-    //                    });
+          // Fetch transactions where the current user is the receiver
+          return transactionsRef
+              .where("receiveremail", "==", currentUserEmail)
+              .orderBy("date", "desc")
+              .get();
+      })
+      .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+              const transaction = doc.data();
+              const transactionDate = transaction.date.toDate().toLocaleDateString();
+              
+              // Append each transaction to the table
+              tbody.innerHTML += `
+                  <tr>
+                      <td><img style="width: 50px;" src="receive.webp" alt=""></td>
+                      <td>${transaction.receivername}</td>
+                      <td>from</td>
+                      <td>${transaction.senderusername}</td>
+                      <td>${transaction.amountTransferred}</td>
+                      <td>${transactionDate}</td>
+                  </tr>
+              `;
+          });
 
-    //                    // If no transactions were added, display a message
-    //                    if (tbody.innerHTML === '') {
-    //                        tbody.innerHTML = `<tr><td colspan="4">No transactions found.</td></tr>`;
-    //                    }
-    //                })
-    //                .catch((error) => {
-    //                    console.error("Error getting transactions:", error);
-    //                });
-
-    // Fetch transactions where the current user is the sender
-    transactionsRef.where("senderemail", "==", currentUserEmail).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          acc_numbermodal.innerHTML = doc.data().receiveracc_no;
-            // Append each transaction to the table
-            tbody.innerHTML += `
-                <tr>
-                    <td><img style="width: 50px;" src="transfer.webp" alt=""><img src="" alt=""></td>
-                    <td>${doc.data().senderusername}</td>
-                    <td>to</td>
-                    <td>${doc.data().receivername}</td>
-                    <td>${-doc.data().amountTransferred}</td>
-                    <td>${ doc.data().date.toDate().toLocaleDateString()}</td>
-                </tr>
-            `;
-        });
-
-        // If no transactions were added, display a message
-        if (tbody.innerHTML === '') {
-            tbody.innerHTML = `<tr><td colspan="3">No transactions found.</td></tr>`;
-        }
-    }).catch((error) => {
-        console.error("Error getting transactions:", error);
-    });
+          // If no transactions were added, display a message
+          if (tbody.innerHTML === '') {
+              tbody.innerHTML = `<tr><td colspan="6">No transactions found.</td></tr>`;
+          }
+      })
+      .catch((error) => {
+          console.error("Error getting transactions:", error);
+          tbody.innerHTML = `<tr><td colspan="6">Error fetching transactions.</td></tr>`;
+      });
 }
+
+
+
+
 function gettransaction(currentUserEmail) {
   const airtimetransactionsRef = db.collection("airtimetransactions");
 

@@ -152,9 +152,8 @@ function transfer() {
                                                 console.log("Recipient's account balance updated successfully!");
                                             })
                                             .then(() => {
-                                                console.log("Recipient's account balance updated successfully!");
                                                 // Show success message to the user
-                                                // alert(`Transfer of N${amountacc_no.value} to ${useracc_no.value} Successful`);
+                                                alert(`Transfer of N${amountacc_no.value} to ${useracc_no.value} Successful`);
                                                 document.getElementById('message').innerHTML = `<span style="color: green;">Transfer of N${amountacc_no.value} to ${useracc_no.value} Successful</span>`;
 
                                                 saveTransaction()

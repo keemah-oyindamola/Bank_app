@@ -264,7 +264,7 @@ select {
 }
 
 .Transactions {
-    background-color: rgb(242, 79, 0);
+    /* background-color: rgb(242, 79, 0); */
     display: none;
     width: 100%;
     height: 100%;
@@ -769,7 +769,7 @@ td {
 }
 
 
-@media only screen and (max-width:800px) {
+@media only screen and (max-width:600px) {
     * {
         margin: 0;
         padding: 0;
@@ -791,7 +791,7 @@ td {
     }
 
     .nav {
-        width: 20%;
+        width: 13%;
         background-color: whitesmoke;
         padding-left: 20px;
         box-sizing: border-box;
@@ -806,13 +806,13 @@ td {
         display: flex;
         /* flex-direction: column; */
         /* background-color: purple; */
-        width: 80%;
+        width: 82%;
         height: 100vh;
         /* padding-left: 20px; */
     }
 
     .account-balance {
-        width: 250px;
+        width: 200px;
         height: 70px;
         /* background-color: blue; */
         background-color: whitesmoke;
@@ -837,18 +837,25 @@ td {
     }
 
     #profilebtn {
-        margin-left: 5rem; /* Center the button */
+        margin-left: 3rem; /* Center the button */
         width: 90px;    /* Adjust button width */
     }
 
     .profilediv {
         width: 120px;  /* Reduce the profile image size */
         height: 120px;
-        margin-left: 5rem; /* Center the profile image */
+        margin-left: 3rem;
     }
 
     .profilelabel {
         font-size: 14px; /* Adjust font size for better fit */
+    }
+    .subdiv{
+       margin: auto;
+       margin-top: 3rem;
+       margin-left: 0; 
+       /* width: 200px; */
+       /* margin-right: 20rem; */
     }
     table,
 th,
@@ -863,58 +870,71 @@ td {
     margin-top: 20px;
     margin: auto;
 }
-.ms {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
+.airtime {
     width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    margin-top: 100px;
 }
 
-.ms-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    padding-left: 30px;
-    width: 50%;
-    height: 50%;
-    box-sizing: border-box;
-    border-radius: 10px;
+.ms-content, .mf-content {
+    width: 90%;
+    height: auto;
+    padding: 15px 10px;
 }
 
-.mf-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    padding-left: 30px;
-    width: 30%;
-    height: 75%;
-    box-sizing: border-box;
-    border-radius: 10px;
+select, .number {
+    /* width: 100%; */
+    max-width: 300px;
+    margin: 15px auto 0;
+}
+.airtel{
+    width: 300px;
+    height: 50px;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px gray;
+    margin-left:50px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buy {
+    margin: 15px auto;
 }
 
 #mori {
-    cursor: pointer;
+    font-size: 20px;
 }
-.mypin {
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    margin-left: 10px;
+.trans-div {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+}
+.Transactions{
+    background-color: none;
+    width: 80%;
+    padding-left: 15px;
+}
 
+.trans-input {
+    width: 100%;
+    max-width: 300px;
+}
+
+.send {
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    display: block;
+}
+
+.mypin {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
 }
 
 .pin {
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    /* margin-left: 35px; */
-
+    justify-content: space-evenly;
 }
 }
