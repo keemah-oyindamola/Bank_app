@@ -180,7 +180,7 @@ function getTransactions(currentUserEmail) {
               // Append each transaction to the table
               tbody.innerHTML += `
                   <tr>
-                      <td><img style="width: 50px;" src="transfer.webp" alt=""></td>
+                      <td><img style="width: 50px;" src="transfer.png" alt=""></td>
                       <td>${transaction.senderusername}</td>
                       <td>to</td>
                       <td>${transaction.receivername}</td>
@@ -204,7 +204,7 @@ function getTransactions(currentUserEmail) {
               // Append each transaction to the table
               tbody.innerHTML += `
                   <tr>
-                      <td><img style="width: 50px;" src="receive.webp" alt=""></td>
+                      <td><img style="width: 50px;" src="recieve.png" alt=""></td>
                       <td>${transaction.receivername}</td>
                       <td>from</td>
                       <td>${transaction.senderusername}</td>
