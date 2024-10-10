@@ -205,10 +205,9 @@ function getTransactions(currentUserEmail) {
               tbody.innerHTML += `
                   <tr>
                       <td><img style="width: 50px;" src="recieve.png" alt=""></td>
-                      <td>${transaction.receivername}</td>
-                      <td>from</td>
-                      <td>${transaction.senderusername}</td>
-                      <td>${transaction.amountTransferred}</td>
+                      
+                      <td> FROM ${transaction.senderusername}</td>
+                      <td>${+transaction.amountTransferred}</td>
                       <td>${transactionDate}</td>
                   </tr>
               `;
