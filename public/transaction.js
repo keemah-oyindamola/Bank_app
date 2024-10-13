@@ -714,7 +714,7 @@ function makePayment() {
                     let newAmount = Number(doc.data().account_balance) + Number(amountgateway.value)
 
                     FlutterwaveCheckout({
-                        public_key: "FLWPUBK_TEST-0ed2f690e66bea65f9c36701a33ae2ff-X",
+                        public_key: "",
                         tx_ref: "Keemah-48981487343MDI0NzMx",
                         amount: amountgateway.value,
                         currency: "NGN",
